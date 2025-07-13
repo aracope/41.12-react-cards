@@ -8,7 +8,7 @@ function useFlip() {
   const [isFlipped, setIsFlipped] = useState(true);
 
   const toggleFlip = () => {
-    setIsFlipped(flipped => !flipped);
+    setIsFlipped((flipped) => !flipped);
   };
 
   return [isFlipped, toggleFlip];
