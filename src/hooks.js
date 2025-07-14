@@ -1,4 +1,5 @@
 import { useState } from "react";
+import axios from "axios";
 
 /**
  * Custom hook to manage the flip state of a card.
@@ -14,4 +15,16 @@ function useFlip() {
   return [isFlipped, toggleFlip];
 }
 
-export { useFlip };
+/** Custom hook for fetching data from an API and accumulating the results. */
+function useAxios(baseUrl) {
+  const [responses, setResponses] = useState([]);
+
+  const addData = async (restUrl = "") => {
+    const response = await axios.get(`${baseUrl}${restUrl}`);
+    setResponses(data => [...data, response.data]);
+  };
+
+  return [responses, addData];
+}
+
+export { useFlip, useAxios };
